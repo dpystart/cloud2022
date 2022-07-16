@@ -12,20 +12,20 @@ import org.springframework.web.client.RestTemplate;
  */
 @RestController
 public class OrderController {
-    public static final String paymentServ_URL="http://localhost:8001";
+    public static final String PAYMENT_SER="http://cloud-payment-service";
 
     @Autowired
     private RestTemplate restTemplate;
 
     @GetMapping(value = "/consumer/payment/create")
     public CommonResult create(Payment payment){
-        return restTemplate.postForObject(paymentServ_URL + "/payment/create",payment,CommonResult.class);
+        return restTemplate.postForObject(PAYMENT_SER + "/payment/create",payment,CommonResult.class);
 
     }
 
     @GetMapping(value = "/consumer/payment/get/{id}")
     public CommonResult<Payment> getPayment(@PathVariable Long id){
-        return restTemplate.getForObject(paymentServ_URL + "/payment/get/" + id,CommonResult.class);
+        return restTemplate.getForObject(PAYMENT_SER + "/payment/get/" + id,CommonResult.class);
 
     }
 
